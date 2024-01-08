@@ -1,27 +1,26 @@
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
-
 int main()
 {
 
-    int liczba, j = 0;
+  int liczba, i;
 
-    cout << "Podaj liczbe: ";
+  cout << "Podaj liczbe: ";
 
-    cin >> liczba;
+  cin >> liczba;
 
-    for (int i = 2; i < sqrt(liczba); i++)
+  for (i = 2; i < sqrt(liczba); i++)
+  {
+
+    if (liczba % i == 0)
     {
-
-        if (liczba % i == 0)
-            j = j + 1;
+      cout << "liczba nie jest pierwsza" << endl;
+      i = (int)(sqrt(liczba) + 4);
     };
+  }
+  if (i != (int)(sqrt(liczba) + 5))
+    cout << "Liczba jest piersza";
 
-    if (j == 0)
-        cout << "Liczba jest piersza";
-
-    else
-        cout << "Liczba nie jest pierwsza";
-    return 0;
+  return 0;
 }
