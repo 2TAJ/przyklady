@@ -18,7 +18,7 @@ int main()
     cin >> d;
 
     fstream plik;
-    plik.open("wejscia.txt",ios::in | ios::out | ios::app);
+    plik.open("baza1.txt",ios::in | ios::out | ios::app);
     if (plik.good() == true)
     {
         plik << a << " ";
