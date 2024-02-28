@@ -5,3 +5,6 @@
 5 Lautaro Martinez 24 44
 6 Romelu Lukaku 31 45
 7 Adam Kolek 43 43
+10 Dominik Burda 17 41 
+11 Dominik Burda 19 42 
+14 Dominik Burda 10 32 

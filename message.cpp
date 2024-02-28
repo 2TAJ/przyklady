@@ -24,17 +24,6 @@ void wypisz(Osoba *osoby, int dlugosc)
   }
 }
 
-void wypiszJednaOsobe(Osoba osoba)
-{
-
-  cout << "Id:" << osoba.id << endl;
-  cout << "Imie:" << osoba.imie << endl;
-  cout << "Nazwisko:" << osoba.nazwisko << endl;
-  cout << "Wiek:" << osoba.wiek << endl;
-  cout << "Number buta:" << osoba.numerButa << endl;
-  cout << "==========" << endl;
-}
-
 int wczytajDlugosc()
 {
   fstream plik;
@@ -54,8 +43,7 @@ int wczytajDlugosc()
     cout << "Blad";
   }
 
-  if (temp == "")
-  {
+  if(temp == ""){
     return 0;
   }
 
@@ -275,77 +263,6 @@ void sortuj()
   zapisz(osoby, dlugosc);
 }
 
-void przeszukaj()
-{
-  int dlugosc = wczytajDlugosc();
-  Osoba *osoby = new Osoba[dlugosc];
-  wczytaj(osoby);
-  char rodzajPrzeszukiwania;
-
-  cout << "wpisz w jesli chcesz przeszukac po wieku, b jesli po numerze buta, i jesli po imieniu, n jesli po nazwisku" << endl;
-  cin >> rodzajPrzeszukiwania;
-
-  if (rodzajPrzeszukiwania == 'i' || rodzajPrzeszukiwania == 'n')
-  {
-    string wartosc;
-    cout << "Podaj wartośc do porówania" << endl;
-    cin >> wartosc;
-
-    if (rodzajPrzeszukiwania == 'i')
-    {
-      for (int i = 0; i < dlugosc; i++)
-      {
-        if (wartosc == osoby[i].imie)
-        {
-          wypiszJednaOsobe(osoby[i]);
-        }
-      }
-    }
-    else if (rodzajPrzeszukiwania == 'n')
-    {
-      for (int i = 0; i < dlugosc; i++)
-      {
-        if (wartosc == osoby[i].nazwisko)
-        {
-          wypiszJednaOsobe(osoby[i]);
-        }
-      }
-    }
-    else
-    {
-      cout << "Bledna operacja" << endl;
-    }
-  }
-  else
-  {
-    int wartosc;
-    cout << "Podaj wartośc do porówania" << endl;
-    
-    cin >> wartosc;
-
-    if (rodzajPrzeszukiwania == 'w')
-    {
-      for (int i = 0; i < dlugosc; i++)
-      {
-        if (wartosc == osoby[i].wiek)
-        {
-          wypiszJednaOsobe(osoby[i]);
-        }
-      }
-    }
-    else if (rodzajPrzeszukiwania == 'b')
-    {
-      for (int i = 0; i < dlugosc; i++)
-      {
-        if (wartosc == osoby[i].numerButa)
-        {
-          wypiszJednaOsobe(osoby[i]);
-        }
-      }
-    }
-  }
-}
-
 void dodajOsobe()
 {
   int dlugosc = wczytajDlugosc();
@@ -437,7 +354,7 @@ void usunOsobe()
 
 int main()
 {
-  cout << "Kliknij d jesli chcesz dodac osobe, m jesli chcesz zmodyfikowac, u jesli chcesz usunac, s jesli chcesz posortowac, p jesli chcesz przeszukac baze:" << endl;
+  cout << "Kliknij d jesli chcesz dodac osobe, m jesli chcesz zmodyfikowac, u jesli chcesz usunac, s jesli chcesz posortowac:" << endl;
   char operacja;
   cin >> operacja;
 
@@ -456,10 +373,6 @@ int main()
   else if (operacja == 's')
   {
     sortuj();
-  }
-  else if (operacja == 'p')
-  {
-    przeszukaj();
   }
   else
   {
