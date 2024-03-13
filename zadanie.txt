@@ -1,0 +1,3 @@
+wypelnia wyektor losoywmi danymi w rozmiarze od uzytkownika(1 funkcja)
+znajduje wartoscie extremalne i zwraca je w wektorze(2 funckja)
+przetestuj je w mainie
