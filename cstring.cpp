@@ -49,14 +49,15 @@ int main()
     // char napis[30] = "Java";
     // char napis1[30] = "C++, JavaScript, C#";
     // char napis2[30];
-    // char napis3[30] = "C#";
     // for (int i = 0; napis1[i] != ' '; i++)
     // {
     //     napis2[i] = napis1[i];
     // }
-    // strcat(napis2, " ");
-    // strcat(napis2, napis);
+    // strcat(napis2, " ");   //"C++, "
+    // strcat(napis2, napis); //"C++, Java"
     // strcat(napis2, ", ");
+    // strchr(napis1, ' ');                             //" JavaScript, C#"
+    // char *napis3 = strchr(strchr(napis1, ' '), ','); //", C#"
     // strcat(napis2, napis3);
     // cout << napis2 << endl;
     return 0;
