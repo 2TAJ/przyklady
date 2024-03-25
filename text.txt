@@ -1,0 +1,3 @@
+pOBIERAMY OD UZYTKOWNIKA imie i nazwisko do jednego cstringa. Do drugiego pobieramy drugie imie. Przy pomocy funkcji
+ z biblioteki cstring oraz tablic znaków utwórz string który bedzie mial format 
+ pierwszeimie drugie imie nazwisko. We: 2cnapisy. Wy: 1cnapis.s

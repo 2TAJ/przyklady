@@ -3,7 +3,7 @@
 using namespace std;
 int main()
 {
-    //================================= 1 i 2
+    // ================================= 1 i 2
     // char napis[30];
     // cout << "Podaj napis" << endl;
     // cin >> napis;
@@ -19,7 +19,7 @@ int main()
     // strcat(napis, napis1);
     // strcat(napis, napis2);
     // cout << napis << endl;
-    //================================= 3
+    // ================================= 3
     // char napis[30] = "Java";
     // char napis1[30] = "JavaScript";
     // if (strstr(napis, napis1) == 0)
@@ -40,12 +40,12 @@ int main()
     // {
     //     cout << "Nie ma" << endl;
     // }
-    //================================= 5
+    // ================================= 5
     // char napis[30];
     // cout << "Podaj napis dwuczlonowy" << endl;
     // cin.getline(napis, 30);
     // cout << napis << endl;
-    //================================= 6
+    // ================================= 6
     // char napis[30] = "Java";
     // char napis1[30] = "C++, JavaScript, C#";
     // char napis2[30];
