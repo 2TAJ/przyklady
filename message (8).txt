@@ -1,0 +1,204 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string PierwszyCzlon(string &napis)
+{
+    int pozycja = napis.find(' ');
+    return napis.substr(0, pozycja);
+}
+
+string DrugiCzlon(string &napis)
+{
+    int pierwszaSpacja = napis.find(' ');
+    int drugaSpacja = napis.find(' ', pierwszaSpacja + 1);
+    return napis.substr(pierwszaSpacja + 1, drugaSpacja - pierwszaSpacja - 1);
+}
+
+string TrzeciCzlon(string &napis)
+{
+    int pierwszaSpacja = napis.find(' ');
+    int drugaSpacja = napis.find(' ', pierwszaSpacja + 1);
+    return napis.substr(drugaSpacja + 1);
+}
+
+
+void zamien(string &napis1, string &napis2)
+{
+    string pierwszyCzlon1 = PierwszyCzlon(napis1);
+    string drugiCzlon1 = DrugiCzlon(napis1);
+    string trzeciCzlon2 = TrzeciCzlon(napis2);
+    string pierwszyCzlon2 = PierwszyCzlon(napis2);
+
+    int pozycja11 = napis1.find(' ');
+    int pozycja12 = napis1.find(' ', pozycja11 + 1);
+
+    int pozycja21 = napis2.find(' ');
+    int pozycja22 = napis2.find(' ', pozycja21 + 1);
+
+    string nowy1 = trzeciCzlon2 + " " + napis1.substr(pozycja11 + 1, pozycja12 - pozycja11 - 1) + " " + pierwszyCzlon2;
+
+    string nowy2 = drugiCzlon1 + " " + napis2.substr(pozycja22 + 1) + " " + pierwszyCzlon1;
+
+    napis1 = nowy1;
+    napis2 = nowy2;
+}
+
+int main()
+{
+    string napis1, napis2;
+
+    cout << "Podaj pierwszy trzyczłonowy napis: ";
+    getline(cin, napis1);
+    cout << "Podaj drugi trzyczłonowy napis: ";
+    getline(cin, napis2);
+
+    zamien(napis1, napis2);
+
+    cout << "Po zamianie:" << endl;
+    cout << "Pierwszy napis: " << napis1 << endl;
+    cout << "Drugi napis: " << napis2 << endl;
+
+    return 0;
+}
+
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    // 2
+    // string napis1 = "Programowanie ";
+    // string napis2 = "zorientowane ";
+    // string napis3 = "obiektowo";
+    // string napis4 = napis1 + napis2 + napis3;
+    // cout << napis4;
+
+    //3
+    // string napis1 = "Java";
+    // string napis2 = "JavaScript";
+    // if (napis1.compare(napis2) == 0)
+    // {
+    //     cout << "Napisy sa takie same";
+    // }
+    // else
+    // {
+    //     cout << "Napisy sa rozne";
+    // }
+
+    //4
+    // string napis1 = "Java Runtime Environment";
+    // int napis2 = napis1.find("Runtime");
+    // if (napis2 >= 0)
+    // {
+    //     cout << "Jest ";
+    // }
+    // else
+    // {
+    //     cout << "Nie ma";
+    // }
+
+    // //5
+    // string napis1;
+    // cout << "Podaj nazwe ";
+    // getline(cin, napis1);
+    // cout << napis1;
+
+    // //6
+    // string napis1 = "C++, JavaScript, C#";
+    // napis1.replace(5, 10, "Java");
+    // cout << napis1;
+
+    //7
+    string napis1, napis2;
+    cout << "Podaj pierwszy dwuczłonowy napis: " << endl;
+    getline(cin, napis1);
+    cout << "Podaj drugi dwuczłonowy napis: " << endl;
+    getline(cin, napis2);
+
+    int spacja = napis1.find(' ');
+    if (spacja != -1)
+    {
+        string pierwszy = napis1.substr(spacja + 1);
+        string ogondrug = napis2.substr(spacja + 1);
+        string drugi = napis1.substr(0, spacja);
+        string ogonpierwszy = napis2.substr(0, spacja);
+        cout << ogondrug << " " << pierwszy << " " << ogonpierwszy << " " << drugi << endl;
+    }
+    else
+    {
+        cout << "Podano nieprawidłowe dane." << endl;
+    }
+    return 0;
+}
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Funkcja wyodrębnia pierwszy człon z napisu
+string PierwszyCzlon(string napis) {
+    int pozycja = napis.find(' ');
+    return napis.substr(0, pozycja);
+}
+
+// Funkcja wyodrębnia trzeci człon z napisu
+string trzeciczlon(string napis) {
+    int spacja1 = napis.find(' ');
+    int spacja2 = napis.find(' ', spacja1 + 1);
+    return napis.substr(spacja2 + 1);
+}
+
+// Funkcja zamienia pierwszy człon pierwszego napisu z trzecim członem drugiego napisu
+void zamien(string &napis1, string &napis2) {
+    string pierwszyCzlon = PierwszyCzlon(napis1);
+    string trzeciCzlon = trzeciczlon(napis2);
+
+    int pozycjaPierwszego = napis1.find(' ');
+    int pozycjaDrugiego = napis2.find(' ', napis2.find(' ') + 1);
+
+    napis1.replace(0, pozycjaPierwszego, trzeciCzlon);
+    napis2.replace(pozycjaDrugiego + 1, napis2.length() - pozycjaDrugiego - 1, pierwszyCzlon);
+}
+
+
+string zamienLitery(string napis) {
+    for (char &znak : napis) {
+        if (islower(znak)) { 
+            znak = toupper(znak); 
+        } else if (isupper(znak)) { 
+            znak = tolower(znak); 
+        }
+    }
+    return napis;
+}
+
+
+
+int main() {
+    string napis1, napis2;
+
+    cout << "Podaj pierwszy trzyczłonowy napis: ";
+    getline(cin, napis1);
+    cout << "Podaj drugi trzyczłonowy napis: ";
+    getline(cin, napis2);
+
+    napis1 = zamienLitery(napis1);
+    napis2 = zamienLitery(napis2);
+    zamien(napis1, napis2);
+
+    cout << "Po zamianie:" << endl;
+    cout << "Pierwszy napis: " << napis1 << endl;
+    cout << "Drugi napis: " << napis2 << endl;
+
+    return 0;
+}
