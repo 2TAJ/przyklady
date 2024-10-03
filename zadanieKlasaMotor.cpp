@@ -36,51 +36,54 @@ public:
             cout << "Po tankowaniu masz tyle paliwa: " << ilePaliwa << endl;
         }
     }
-    void porownajMotory(motor motor1, motor motor2)
+    int porownajMotory(motor motor1, motor motor2)
     {
         int wynik1, wynik2;
         if (motor1.czyDwusuw > motor2.czyDwusuw)
         {
             wynik2++;
+            return wynik1;
         }
         else if (motor1.czyDwusuw < motor2.czyDwusuw)
         {
             wynik1++;
+            return wynik2;
         }
-        if (motor1.czyCross > motor2.czyCross)
-        {
-            wynik1++;
-        }
-        else if (motor1.czyCross < motor2.czyCross)
-        {
-            wynik2++;
-        }
-        if (motor1.pojemnosc > motor2.pojemnosc)
-        {
-            wynik1++;
-        }
-        else if (motor1.pojemnosc < motor2.pojemnosc)
-        {
-            wynik2++;
-        }
-        if (wynik1 > wynik2)
-        {
-            cout << "Motor 1 jest lepszy" << endl;
-        }
-        else if (wynik1 < wynik2)
-        {
-            cout << "Motor 2 jest lepszy" << endl;
-        }
-        else if (wynik1 == wynik2)
-        {
-            cout << "Motory sa takie same" << endl;
-        }
+        
+        // if (motor1.czyCross > motor2.czyCross)
+        // {
+        //     wynik1++;
+        // }
+        // else if (motor1.czyCross < motor2.czyCross)
+        // {
+        //     wynik2++;
+        // }
+        // if (motor1.pojemnosc > motor2.pojemnosc)
+        // {
+        //     wynik1++;
+        // }
+        // else if (motor1.pojemnosc < motor2.pojemnosc)
+        // {
+        //     wynik2++;
+        // }
+        // if (wynik1 > wynik2)
+        // {
+        //     cout << "Motor 1 jest lepszy" << endl;
+        // }
+        // else if (wynik1 < wynik2)
+        // {
+        //     cout << "Motor 2 jest lepszy" << endl;
+        // }
+        // else if (wynik1 == wynik2)
+        // {
+        //     cout << "Motory sa takie same" << endl;
+        // }
     }
     void setCzyDwusuw(char czy)
     {
-        cout << "czy Dwusuw (podaj 'T' jesli tak): ";
+        cout << "czy Dwusuw (podaj 't' jesli tak): ";
         cin >> czy;
-        if (czy == 'T')
+        if (czy == 't')
         {
             czyDwusuw = true;
         }
@@ -94,7 +97,7 @@ public:
 
         cout << "czy Cross: ";
         cin >> czy;
-        if (czy == 'T')
+        if (czy == 't')
         {
             czyCross = true;
         }
