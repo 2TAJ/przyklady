@@ -138,17 +138,14 @@ public:
     Osoba()
     {
         liczbaInstancji++;
-        id = 0;
-        imie = "";
     }
-    Osoba(const Osoba &wzorzec)
+    Osoba(const Osoba &wzorzec) : Osoba::Osoba()
     {
-        liczbaInstancji++;
         id = wzorzec.id;
         imie = wzorzec.imie;
         cout << "Konstruktor kopiujacy" << " " << id << " " << imie << endl;
     }
-    Osoba(string imieP, int idP)
+    Osoba(string imieP, int idP) : Osoba::Osoba()
     {
         imie = imieP;
         id = idP;
