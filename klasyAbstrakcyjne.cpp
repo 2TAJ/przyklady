@@ -1,32 +1,47 @@
 #include <iostream>
 using namespace std;
-class kolor
+
+class Czlowiek
 {
 public:
-    virtual void kolor1() = 0;
+    virtual void setImieCzlowieka() = 0;
 };
-class ksztalt
+
+class Rasa
 {
 public:
-    virtual void ksztalt1() = 0;
+    virtual void setRasa() = 0;
 };
-class Figura : public kolor, public ksztalt
+
+class Zwierze : public Czlowiek, public Rasa
 {
 public:
-    void kolor1()
+    string imieZwierzecia, imieWlasciciela, rasa;
+    virtual void setImieCzlowieka()
     {
-        cout << "czarny" << endl;
+        cout << "Podaj imie wlasciciela ";
+        cin >> imieWlasciciela;
     }
-    void ksztalt1()
+    virtual void setRasa()
     {
-        cout << "jakis ksztalt" << endl;
+        cout << "Podaj rase ";
+        cin >> rasa;
+    }
+    void setImieZwierzecia()
+    {
+        cout << "Podaj imie zwierzecia ";
+        cin >> imieZwierzecia;
     }
 };
 
 int main()
 {
-    Figura *figura = new Figura();
-    figura->ksztalt1();
-    figura->kolor1();
+    Zwierze kot;
+    kot.setImieCzlowieka();
+    kot.setImieZwierzecia();
+    kot.setRasa();
+    cout << "wlasciciel " << kot.imieWlasciciela << endl;
+    cout << "imie zwierzecia " << kot.imieZwierzecia << endl;
+    cout << "rasa " << kot.rasa << endl;
     return 0;
 }
