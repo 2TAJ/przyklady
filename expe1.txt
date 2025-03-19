@@ -1,0 +1,118 @@
+#include <iostream>
+#include <stdexcept> // Do obsługi wyjątków
+using namespace std;
+
+// ==============================
+// Grupa A - Wyjątki dla liczb
+// ==============================
+
+// Wyjątek dla liczby nieparzystej (dziedziczy z exception)
+class NieparzystaException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Podano liczbe nieparzysta!";
+    }
+};
+
+// Wyjątek dla liczby niecałkowitej (dziedziczy z runtime_error)
+class NiecalkowitaException : public runtime_error {
+public:
+    NiecalkowitaException() : runtime_error("Podano liczbe niecalkowita!") {}
+};
+
+// ==============================
+// Grupa B - Wyjątki dla znaków
+// ==============================
+
+// Wyjątek dla cyfry (dziedziczy z exception)
+class CyfraException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Podano cyfre zamiast litery!";
+    }
+};
+
+// Wyjątek dla innych znaków (dziedziczy z runtime_error)
+class InnyZnakException : public runtime_error {
+public:
+    InnyZnakException() : runtime_error("Podano inny znak niz litera lub cyfra!") {}
+};
+
+// ==============================
+// Funkcje pomocnicze
+// ==============================
+
+// Sprawdza, czy liczba jest całkowita
+bool czyCalkowite(double liczba) {
+    return (liczba - (int)liczba == 0);
+}
+
+// Sprawdza, jaka to litera/cyfra/inny znak
+void jakaLitera(char znak) {
+    if ((int)znak > 96 && (int)znak < 123) {
+        throw znak; // Mała litera - obsłużona przez typ zmiennej
+    } else if ((int)znak > 64 && (int)znak < 91) {
+        cout << "JD" << endl; // Duża litera - poprawne wejście
+    } else if ((int)znak > 47 && (int)znak < 58) {
+        throw CyfraException(); // Cyfra - wyjątek exception
+    } else {
+        throw InnyZnakException(); // Inny znak - wyjątek runtime_error
+    }
+}
+
+// ==============================
+// Funkcja główna - Grupa A i B
+// ==============================
+
+int main() {
+    try {
+        // ------------------
+        // Grupa A - Liczby
+        // ------------------
+        double liczba;
+        cout << "Podaj liczbe parzysta i nieujemna: ";
+        cin >> liczba;
+
+        if (!czyCalkowite(liczba)) {
+            throw NiecalkowitaException(); // Liczba niecałkowita
+        }
+
+        int liczbaCalkowita = (int)liczba; // Konwersja na int po sprawdzeniu
+
+        if (liczbaCalkowita < 0) {
+            throw liczbaCalkowita; // Liczba ujemna - obsłużona przez typ zmiennej
+        }
+
+        if (liczbaCalkowita % 2 != 0) {
+            throw NieparzystaException(); // Liczba nieparzysta - exception
+        }
+
+        cout << "JD" << endl; // Liczba poprawna
+
+        // ------------------
+        // Grupa B - Litery
+        // ------------------
+        char znak;
+        cout << "Podaj duza litere: ";
+        cin >> znak;
+
+        jakaLitera(znak); // Sprawdzenie litery
+
+    } catch (const NiecalkowitaException &e) {
+        cout << e.what() << endl;
+    } catch (const NieparzystaException &e) {
+        cout << e.what() << endl;
+    } catch (const runtime_error &e) {
+        cout << e.what() << endl;
+    } catch (const exception &e) {
+        cout << e.what() << endl;
+    } catch (int) {
+        cout << "Podano liczbe ujemna!" << endl;
+    } catch (char) {
+        cout << "Podano mala litere!" << endl;
+    } catch (...) {
+        cout << "Podano wartosc spoza zakresu!" << endl;
+    }
+
+    return 0;
+}

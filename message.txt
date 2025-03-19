@@ -1,0 +1,100 @@
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+class MyException : public exception
+{
+public:
+    const char *what() const noexcept override
+    {
+        return "Podales jednocyfrowa";
+    }
+};
+
+class MyRuntimeError : public runtime_error
+{
+public:
+    MyRuntimeError(const string &msg) : runtime_error(msg) {}
+};
+
+class MyLogicError : public logic_error
+{
+public:
+    MyLogicError(const string &msg) : logic_error(msg) {}
+};
+
+int main()
+{
+    try
+    {
+        int liczba;
+        int licznik_petli = 0; // Licznik do wykrywania zapętlenia
+
+        while (true) // Pętla bez końca
+        {
+            cout << "Podaj liczbe dwucyfrowa (0 aby zakonczyc): ";
+            cin >> liczba;
+
+            if (liczba == 0)
+            {
+                cout << "Koniec programu." << endl;
+                break;
+            }
+
+            if (liczba < 10)
+            {
+                throw MyException();
+            }
+            if (liczba > 99 && liczba < 1000)
+            {
+                throw MyRuntimeError("Podales trzycyfrowa");
+            }
+            if (liczba > 999 && liczba < 10000)
+            {
+                throw MyLogicError("Podales czterocyfrowa");
+            }
+            if (liczba > 9999)
+            {
+                throw "Podales liczbe wieksza niz 9999";
+            }
+
+            // Obsługa dzielenia przez zero
+            int dzielnik;
+            cout << "Podaj liczbe do dzielenia: ";
+            cin >> dzielnik;
+            if (dzielnik == 0)
+            {
+                throw runtime_error("Blad: dzielenie przez zero!");
+            }
+
+            cout << "Wynik dzielenia: " << liczba / dzielnik << endl;
+            cout << "Liczba jednosci: " << liczba % 10 << endl;
+            cout << "Liczba dziesiatek: " << liczba / 10 << endl;
+
+            licznik_petli++;
+            if (licznik_petli > 10) // Jeśli użytkownik wpadnie w pętlę
+            {
+                throw runtime_error("Blad: wykryto nieskonczona petle!");
+            }
+        }
+    }
+    catch (const runtime_error &e)
+    {
+        cout << "Wyjatek runtime_error: " << e.what() << endl;
+    }
+    catch (const logic_error &e)
+    {
+        cout << "Wyjatek logic_error: " << e.what() << endl;
+    }
+    catch (const exception &e)
+    {
+        cout << "Wyjatek exception: " << e.what() << endl;
+    }
+    catch (...)
+    {
+        cout << "Nieznany blad wystapil." << endl;
+    }
+
+    return 0;
+}
